@@ -1,0 +1,79 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Test API",
+    "description": "Test API",
+    "version": "0.0.1"
+  },
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/message/v1": {
+      "x-swagger-router-controller": "message",
+      "get": {
+        "description": "Return message in an object.",
+        "parameters": [
+          {
+            "name": "message",
+            "in": "query",
+            "description": "The message to be displayed.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An object with text.",
+            "schema": {
+              "additionalProperties": false,
+              "type": "object",
+              "required": ["message"],
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/responses/Error"
+          }
+        }
+      }
+    },
+    "/gettime/v1": {
+      "x-swagger-router-controller": "gettime",
+      "get": {
+        "description": "Return current Time in an object.",
+        "parameters": [
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "An object with the time.",
+            "schema": {
+              "additionalProperties": false,
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/responses/Error"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "Error": {
+      "description": "Invalid request.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  }
+}
